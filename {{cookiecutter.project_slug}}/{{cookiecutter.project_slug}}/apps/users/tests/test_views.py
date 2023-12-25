@@ -9,10 +9,10 @@ from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
-from {{ cookiecutter.project_slug }}.users.forms import UserAdminChangeForm
-from {{ cookiecutter.project_slug }}.users.models import User
-from {{ cookiecutter.project_slug }}.users.tests.factories import UserFactory
-from {{ cookiecutter.project_slug }}.users.views import (
+from {{ cookiecutter.project_slug }}.apps.users.forms import UserAdminChangeForm
+from {{ cookiecutter.project_slug }}.apps.users.models import User
+from {{ cookiecutter.project_slug }}.apps.users.tests.factories import UserFactory
+from {{ cookiecutter.project_slug }}.apps.users.views import (
     UserRedirectView,
     UserUpdateView,
     user_detail_view,
