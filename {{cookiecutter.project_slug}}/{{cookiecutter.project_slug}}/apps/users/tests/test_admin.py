@@ -39,6 +39,8 @@ class TestUserAdmin:
         {%- else %}
         assert User.objects.filter(username="test").exists()
         {%- endif %}
+        assert User.objects.filter(first_name="New").exists()
+        assert User.objects.filter(last_name="Admin").exists()
 
     def test_view_user(self, admin_client):
         {%- if cookiecutter.username_type == "email" %}
