@@ -17,6 +17,10 @@ production-ready Django projects quickly.
 - If you have problems with Cookiecutter Django, please open [issues](https://github.com/cookiecutter/cookiecutter-django/issues/new) don't send
   emails to the maintainers.
 
+## About this Fork
+
+This fork replaces the `name` field in the `User` model with `first_name` and `last_name`. This change was made out of frustration working with third-party APIs that require first and last names. In addition, the `users` app has been moved to an `apps` subdirectory in the project slug. This is merely a personal preference for having all local apps in this directory.
+
 ## Features
 
 - For Django 4.2
@@ -92,7 +96,7 @@ First, get Cookiecutter. Trust me, it's awesome:
 
 Now run it against this repo:
 
-    $ cookiecutter https://github.com/cookiecutter/cookiecutter-django
+    $ cookiecutter https://github.com/dr-rompecabezas/cookiecutter-django
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
 
