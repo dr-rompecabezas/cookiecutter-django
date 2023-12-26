@@ -21,6 +21,8 @@ production-ready Django projects quickly.
 
 This fork replaces the `name` field in the `User` model with `first_name` and `last_name`. This change was made out of frustration working with third-party APIs that require first and last names. In addition, the `users` app has been moved to an `apps` subdirectory in the project slug. This is merely a personal preference for having all local apps in this directory.
 
+The template is also being adapted to work with or without Docker using environment variables for configuration. This is a work in progress and will be updated as I continue to work on it.
+
 ## Features
 
 - For Django 4.2
