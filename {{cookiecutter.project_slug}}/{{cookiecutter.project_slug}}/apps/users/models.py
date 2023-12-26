@@ -15,8 +15,8 @@ class User(AbstractUser):
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
 
-    first_name = models.CharField(_("first name"), max_length=150)
-    last_name = models.CharField(_("last name"), max_length=150)
+    first_name = CharField(_("first name"), max_length=150)
+    last_name = CharField(_("last name"), max_length=150)
     {%- if cookiecutter.username_type == "email" %}
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore
