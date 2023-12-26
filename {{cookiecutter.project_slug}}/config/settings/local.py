@@ -27,6 +27,7 @@ CACHES = {
 # ------------------------------------------------------------------------------
 {% if cookiecutter.use_mailpit == 'y' and cookiecutter.use_docker == 'y' -%}
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
+# This is specific to Docker; if using virtual environment export EMAIL_HOST=localhost
 EMAIL_HOST = env("EMAIL_HOST", default="mailpit")
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = 1025
