@@ -72,6 +72,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 {%- endif %}
+                ("first_name", models.CharField(max_length=150, verbose_name="first name")),
+                ("last_name", models.CharField(max_length=150, verbose_name="last name")),
                 (
                     "is_staff",
                     models.BooleanField(
@@ -94,8 +96,6 @@ class Migration(migrations.Migration):
                         default=django.utils.timezone.now, verbose_name="date joined"
                     ),
                 ),
-                ("first_name", models.CharField(blank=True, max_length=150, verbose_name="first name")),
-                ("last_name", models.CharField(blank=True, max_length=150, verbose_name="last name")),
                 (
                     "groups",
                     models.ManyToManyField(
