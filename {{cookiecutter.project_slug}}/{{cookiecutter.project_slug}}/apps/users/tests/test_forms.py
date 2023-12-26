@@ -29,6 +29,8 @@ class TestUserAdminCreationForm:
                 {%- else %}
                 "username": user.username,
                 {%- endif %}
+                "first_name": user.first_name,
+                "last_name": user.last_name,
                 "password1": user.password,
                 "password2": user.password,
             }

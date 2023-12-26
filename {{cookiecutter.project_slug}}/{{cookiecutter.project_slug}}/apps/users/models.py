@@ -15,17 +15,17 @@ class User(AbstractUser):
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
 
-    # First and last name do not cover name patterns around the globe
-    name = CharField(_("Name of User"), blank=True, max_length=255)
-    first_name = None  # type: ignore
-    last_name = None  # type: ignore
+    first_name = models.CharField(_("first name"), max_length=150)
+    last_name = models.CharField(_("last name"), max_length=150)
     {%- if cookiecutter.username_type == "email" %}
     email = EmailField(_("email address"), unique=True)
     username = None  # type: ignore
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    {%- endif %}
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
+    {%- if cookiecutter.username_type == "email" %}
     objects = UserManager()
     {%- endif %}
 
@@ -37,7 +37,7 @@ class User(AbstractUser):
 
         """
         {%- if cookiecutter.username_type == "email" %}
-        return reverse("users:detail", kwargs={"pk": self.id})
+        return reverse("users:detail", kwargs={"pk": self.pk})
         {%- else %}
         return reverse("users:detail", kwargs={"username": self.username})
         {%- endif %}

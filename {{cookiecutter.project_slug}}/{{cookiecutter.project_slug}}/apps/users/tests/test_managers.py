@@ -11,6 +11,8 @@ class TestUserManager:
     def test_create_user(self):
         user = User.objects.create_user(
             email="john@example.com",
+            first_name="John",
+            last_name="Doe",
             password="something-r@nd0m!",
         )
         assert user.email == "john@example.com"
@@ -22,6 +24,8 @@ class TestUserManager:
     def test_create_superuser(self):
         user = User.objects.create_superuser(
             email="admin@example.com",
+            first_name="John",
+            last_name="Doe",
             password="something-r@nd0m!",
         )
         assert user.email == "admin@example.com"
@@ -32,6 +36,8 @@ class TestUserManager:
     def test_create_superuser_username_ignored(self):
         user = User.objects.create_superuser(
             email="test@example.com",
+            first_name="John",
+            last_name="Doe",
             password="something-r@nd0m!",
         )
         assert user.username is None
@@ -45,6 +51,10 @@ def test_createsuperuser_command():
         "createsuperuser",
         "--email",
         "henry@example.com",
+        "--first_name",
+        "Henry",
+        "--last_name",
+        "Higgins",
         interactive=False,
         stdout=out,
     )

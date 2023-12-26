@@ -21,10 +21,10 @@ class UserAdmin(auth_admin.UserAdmin):
     fieldsets = (
         {%- if cookiecutter.username_type == "email" %}
         (None, {"fields": ("email", "password")}),
-        (_("Personal info"), {"fields": ("name",)}),
+        (_("Personal info"), {"fields": ("first_name", "last_name")}),
         {%- else %}
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("name", "email")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email")}),
         {%- endif %}
         (
             _("Permissions"),
@@ -40,16 +40,27 @@ class UserAdmin(auth_admin.UserAdmin):
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
-    list_display = ["{{cookiecutter.username_type}}", "name", "is_superuser"]
-    search_fields = ["name"]
+    list_display = [
+        "{{cookiecutter.username_type}}",
+        "first_name",
+        "last_name",
+        "is_superuser",
+    ]
+    search_fields = ["email", "first_name", "last_name"]
     {%- if cookiecutter.username_type == "email" %}
-    ordering = ["id"]
+    ordering = ["-date_joined"]
     add_fieldsets = (
         (
             None,
             {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
+                "fields": (
+                    "email",
+                    "first_name",
+                    "last_name",
+                    "password1",
+                    "password2",
+                ),
             },
         ),
     )

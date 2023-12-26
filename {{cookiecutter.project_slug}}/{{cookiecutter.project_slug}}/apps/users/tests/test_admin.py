@@ -27,6 +27,8 @@ class TestUserAdmin:
                 {%- else %}
                 "username": "test",
                 {%- endif %}
+                "first_name": "New",
+                "last_name": "Admin",
                 "password1": "My_R@ndom-P@ssw0rd",
                 "password2": "My_R@ndom-P@ssw0rd",
             },
