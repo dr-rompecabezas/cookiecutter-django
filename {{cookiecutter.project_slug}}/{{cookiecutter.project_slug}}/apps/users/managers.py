@@ -1,26 +1,25 @@
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.models import UserManager as DjangoUserManager
+from django.utils.translation import gettext_lazy as _
 
 
-class UserManager(DjangoUserManager):
-    """Custom manager for the User model."""
+class UserManager(BaseUserManager):
+    use_in_migrations = True
 
     def _create_user(self, email: str, first_name: str, last_name: str, password: str | None, **extra_fields):
         """
         Create and save a user with the given email, names, and password.
         """
         if not email:
-            raise ValueError("The email must be set")
+            raise ValueError(_("The email must be set"))
         if not first_name:
-            raise ValueError("The first name must be set")
+            raise ValueError(_("The first name must be set"))
         if not last_name:
-            raise ValueError("The last name must be set")
+            raise ValueError(_("The last name must be set"))
 
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.password = make_password(password)
+        user = self.model(email=email, first_name=first_name, last_name=last_name, **extra_fields)
+        user.password = make_password(password)  # type: ignore
         user.save(using=self._db)
         return user
 
@@ -36,8 +35,8 @@ class UserManager(DjangoUserManager):
         extra_fields.setdefault("is_superuser", True)
 
         if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
+            raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+            raise ValueError(_("Superuser must have is_superuser=True."))
 
         return self._create_user(email, first_name, last_name, password, **extra_fields)
